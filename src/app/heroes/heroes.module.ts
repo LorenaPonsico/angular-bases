@@ -21,15 +21,3 @@ import { HeroComponent } from './hero/hero.component';
 export class HeroesModule { }
 
 
-
-// @NgModule({
-// declarations:[
-//     HeroComponent
-// ],
-// exports:[
-//     HeroComponent
-// ]
-// })
-
-// export class HeroComponent{}
-
