@@ -1,31 +1,26 @@
 import { Component } from '@angular/core';
 import { Character } from '../interfaces/character.interfaces';
+import { DbzService } from '../services/dbz.service';
 
 @Component({
-    selector: 'app-dbz-main-page',
-    templateUrl: './main-page.component.html'
+  selector: 'app-dbz-main-page',
+  templateUrl: './main-page.component.html'
 })
 
 export class MainPageComponent {
 
-    public characters: Character[] = [{
-        name: "Krillin",
-        power: 1000
-    }, {
-        name: "Goku",
-        power: 9500
-    }, {
-        name: "Vegetta",
-        power: 7500
-    }];
+  constructor(private dbzService: DbzService) { } // INYECTADO SERVICIO// esto hace la inyeccion de dependencias, me habilita en todo este componente toda la informacion del servicio
 
-    onNewCharacter(character: Character):void {
-        this.characters.push(character);
-    }
+  get characters(): Character[] {
+    return [...this.dbzService.characters];
+  }
 
-    onDeleteCharacter (index:number) {
-        this.characters.splice(index, 1);
+  onDeleteCharacter (id:string): void{
+    this.dbzService.deleteCharacterById(id);
+  }
 
-    }
+  onNewCharacter (character: Character): void{
+    this.dbzService.onNewCharacter(character);
+  }
 
 }
